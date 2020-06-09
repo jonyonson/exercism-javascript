@@ -8,7 +8,7 @@ export const hey = (message) => {
 
   if (isEmptyMessage(message)) {
     return 'Fine. Be that way!';
-  } else if (isYellingQuestion(message)) {
+  } else if (isYelling(message) && isQuestion(message)) {
     return "Calm down, I know what I'm doing!";
   } else if (isQuestion(message)) {
     return 'Sure.';
@@ -21,14 +21,6 @@ export const hey = (message) => {
 
 const isEmptyMessage = (message) => {
   return message === '';
-};
-
-const isYellingQuestion = (message) => {
-  return (
-    message.endsWith('?') &&
-    message.toUpperCase() === message &&
-    message.match(/[a-z]/i)
-  );
 };
 
 const isQuestion = (message) => {
