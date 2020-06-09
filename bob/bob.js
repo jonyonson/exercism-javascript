@@ -5,23 +5,36 @@
 
 export const hey = (message) => {
   message = message.trim();
-  if (message === '') {
+
+  if (isEmptyMessage(message)) {
     return 'Fine. Be that way!';
-  }
-
-  if (message.endsWith('?')) {
-    if (message.toUpperCase() === message && message.match(/[a-z]/i)) {
-      return "Calm down, I know what I'm doing!";
-    }
+  } else if (isYellingQuestion(message)) {
+    return "Calm down, I know what I'm doing!";
+  } else if (isQuestion(message)) {
     return 'Sure.';
-  }
-
-  if (message.toUpperCase() === message) {
-    if (!message.match(/[a-z]/i)) {
-      return 'Whatever.';
-    }
+  } else if (isYelling(message)) {
     return 'Whoa, chill out!';
+  } else {
+    return 'Whatever.';
   }
+};
 
-  return 'Whatever.';
+const isEmptyMessage = (message) => {
+  return message === '';
+};
+
+const isYellingQuestion = (message) => {
+  return (
+    message.endsWith('?') &&
+    message.toUpperCase() === message &&
+    message.match(/[a-z]/i)
+  );
+};
+
+const isQuestion = (message) => {
+  return message.endsWith('?');
+};
+
+const isYelling = (message) => {
+  return message.toUpperCase() === message && message.match(/[a-z]/i);
 };
