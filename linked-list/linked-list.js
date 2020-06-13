@@ -49,7 +49,9 @@ export class LinkedList {
   }
 
   shift() {
-    throw new Error('Remove this statement and implement this function');
+    const value = this.head.value;
+    this.delete(this.head);
+    return value;
   }
 
   unshift() {
