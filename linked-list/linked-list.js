@@ -9,6 +9,15 @@ class Node {
     this.next = null;
     this.previous = null;
   }
+
+  delete(node) {
+    if (this.previous) {
+      this.previous.next = this.next;
+    }
+    if (this.next) {
+      this.next.previous = this.previous;
+    }
+  }
 }
 
 export class LinkedList {
@@ -34,7 +43,9 @@ export class LinkedList {
   }
 
   pop() {
-    throw new Error('Remove this statement and implement this function');
+    const value = this.tail.value;
+    this.delete(this.tail);
+    return value;
   }
 
   shift() {
@@ -45,8 +56,21 @@ export class LinkedList {
     throw new Error('Remove this statement and implement this function');
   }
 
-  delete() {
-    throw new Error('Remove this statement and implement this function');
+  delete(node) {
+    this.length--;
+
+    if (!this.head && !this.tail) return;
+
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else if (this.head === node) {
+      this.head = node.next;
+      node.delete();
+    } else if (this.tail === node) {
+      this.tail = node.previous;
+      node.delete();
+    }
   }
 
   count() {
