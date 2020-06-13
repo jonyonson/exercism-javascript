@@ -74,7 +74,9 @@ export class LinkedList {
       this.deleteNode(node);
       return;
     }
+
     let currentNode = this.head;
+    let valueFound = false;
 
     // only one value
     if (!currentNode.next && currentNode.value === value) {
@@ -83,8 +85,6 @@ export class LinkedList {
       this.length--;
       return;
     }
-
-    let valueFound = false;
 
     if (value === this.head.value) {
       this.head = this.head.next;
