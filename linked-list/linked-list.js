@@ -54,8 +54,19 @@ export class LinkedList {
     return value;
   }
 
-  unshift() {
-    throw new Error('Remove this statement and implement this function');
+  unshift(data) {
+    const node = new Node(data);
+
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.head.previous = node;
+      node.next = this.head;
+      this.head = node;
+    }
+
+    this.length++;
   }
 
   delete(node) {
