@@ -50,7 +50,7 @@ describe('LinkedList', () => {
     list.push(20);
     expect(list.count()).toBe(2);
   });
-  xtest('sets head/tail after popping last element', () => {
+  test('sets head/tail after popping last element', () => {
     const list = new LinkedList();
     list.push(10);
     list.pop();
@@ -58,7 +58,7 @@ describe('LinkedList', () => {
     expect(list.count()).toBe(1);
     expect(list.pop()).toBe(20);
   });
-  xtest('sets head/tail after shifting last element', () => {
+  test('sets head/tail after shifting last element', () => {
     const list = new LinkedList();
     list.unshift(10);
     list.shift();
@@ -66,7 +66,7 @@ describe('LinkedList', () => {
     expect(list.count()).toBe(1);
     expect(list.shift()).toBe(20);
   });
-  xtest('deletes the element with the specified value from the list', () => {
+  test('deletes the element with the specified value from the list', () => {
     const list = new LinkedList();
     list.push(10);
     list.push(20);
@@ -76,13 +76,13 @@ describe('LinkedList', () => {
     expect(list.pop()).toBe(30);
     expect(list.shift()).toBe(10);
   });
-  xtest('deletes the only element', () => {
+  test('deletes the only element', () => {
     const list = new LinkedList();
     list.push(10);
     list.delete(10);
     expect(list.count()).toBe(0);
   });
-  xtest('deletes the first of two elements', () => {
+  test('deletes the first of two elements', () => {
     const list = new LinkedList();
     list.push(10);
     list.push(20);
@@ -90,7 +90,7 @@ describe('LinkedList', () => {
     expect(list.count()).toBe(1);
     expect(list.pop()).toBe(20);
   });
-  xtest('deletes the second of two elements', () => {
+  test('deletes the second of two elements', () => {
     const list = new LinkedList();
     list.push(10);
     list.push(20);
@@ -98,13 +98,13 @@ describe('LinkedList', () => {
     expect(list.count()).toBe(1);
     expect(list.pop()).toBe(10);
   });
-  xtest('delete does not modify the list if the element is not found', () => {
+  test('delete does not modify the list if the element is not found', () => {
     const list = new LinkedList();
     list.push(10);
     list.delete(20);
     expect(list.count()).toBe(1);
   });
-  xtest('deletes only the first occurence', () => {
+  test('deletes only the first occurence', () => {
     const list = new LinkedList();
     list.push(5);
     list.push(10);
