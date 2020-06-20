@@ -44,13 +44,13 @@ export class LinkedList {
 
   pop() {
     const value = this.tail.value;
-    this.deleteNode(this.tail);
+    this.delete(this.tail);
     return value;
   }
 
   shift() {
     const value = this.head.value;
-    this.deleteNode(this.head);
+    this.delete(this.head);
     return value;
   }
 
@@ -69,31 +69,35 @@ export class LinkedList {
     this.length++;
   }
 
-  delete(value) {
-    if (value instanceof Node) {
-      this.deleteNode(node);
+  delete(item) {
+    if (item instanceof Node) {
+      this.deleteNode(item);
+    } else {
+      this.deleteNodeWithValue(item);
+    }
+  }
+
+  deleteNodeWithValue(value) {
+    if (value === this.head.value) {
+      this.head = this.head.next;
+      this.length--;
+      return;
+    }
+
+    if (value === this.tail.value) {
+      this.tail = this.tail.previous;
+      this.length--;
       return;
     }
 
     let currentNode = this.head;
-    let valueFound = false;
 
-    // only one value
+    // If only one node and it's value is the value we are deleting
     if (!currentNode.next && currentNode.value === value) {
       this.head = null;
       this.tail = null;
       this.length--;
       return;
-    }
-
-    if (value === this.head.value) {
-      this.head = this.head.next;
-      valueFound = true;
-    }
-
-    if (value === this.tail.value) {
-      this.tail = this.tail.previous;
-      valueFound = true;
     }
 
     while (currentNode.next && currentNode.next.value !== value) {
@@ -107,15 +111,11 @@ export class LinkedList {
       } else {
         currentNode.next = null;
       }
-      valueFound = true;
+      this.length--;
     }
-
-    valueFound && this.length--;
   }
 
   deleteNode(node) {
-    this.length--;
-
     if (!this.head && !this.tail) return;
 
     if (this.head === this.tail) {
@@ -128,6 +128,8 @@ export class LinkedList {
       this.tail = node.previous;
       node.delete();
     }
+
+    this.length--;
   }
 
   count() {
